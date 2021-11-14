@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users$">
+      <td>{{ user.id }}</td>
+      <td>{{ user.email }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="success" *ngIf="!loadingData && numberOfUsersInvited && numberOfUsersInvited > 0">{{numberOfUsersInvited + ' users get invited'}}</div>
+
+<ng-container *ngIf="!loadingData && duplicatedUsersArray && duplicatedUsersArray.length > 0">
+  <div class="error" *ngFor="let duplicatedUser of duplicatedUsersArray">
+    <p>{{duplicatedUser + ' Already exist'}}</p>
+  </div>
+</ng-container>
+<ng-container *ngIf="!loadingData && serverErrors && serverErrors.length > 0">
+  <div class="error" *ngFor="let error of serverErrors">
+    <p>{{error}}</p>
+  </div>
+</ng-container>
